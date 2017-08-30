@@ -2,6 +2,7 @@
 Usage of Bing Speech API in Dictation mode with PCM files.
 
 ** Configured for Dutch language
+
 ** Now with Confidence Scores!
 
 (Need to be 16 bit signed PCM/WAV. Floating point type samples don't work)
