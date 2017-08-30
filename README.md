@@ -1,5 +1,8 @@
 # bing-speech
 Usage of Bing Speech API in Dictation mode with PCM files
+
+** Now with Confidence Scores!
+
 (Need to be 16 bit signed PCM/WAV. Floating point type samples don't work)
 ## Requirements:
 - Python 3.6
