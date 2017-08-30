@@ -7,7 +7,7 @@ from uuid import uuid4
 
 import websockets
 
-SUB_KEY = "<API KEY>"
+SUB_KEY = "d2aa00db1dc948d682ba3d468e083b74"
 
 
 def bytes_from_file(filename, chunksize=8192):
@@ -47,7 +47,7 @@ async def send_file(websocket, filename):
 async def handler(filename):
     conn_id = uuid4().hex
     url = f"wss://speech.platform.bing.com/speech/recognition/dictation/cognitiveservices/v1?" \
-          f"language=nl-NL&Ocp-Apim-Subscription-Key={SUB_KEY}&X-ConnectionId={conn_id}"
+          f"language=nl-NL&Ocp-Apim-Subscription-Key={SUB_KEY}&X-ConnectionId={conn_id}&format=detailed"
     try:
         async with websockets.connect(url) as websocket:
             await send_file(websocket, filename)
@@ -55,10 +55,14 @@ async def handler(filename):
                 response = await websocket.recv()
                 content = extract_json_body(response)
                 if "RecognitionStatus" in content and content["RecognitionStatus"] == "Success":
-                    print(content["DisplayText"])
+                    if("NBest" in content):
+                        print("Text: ", content["NBest"][0]["Display"])
+                        print("Confidence: ", content["NBest"][0]["Confidence"])
+                        print("=====")
                 if "RecognitionStatus" in content and content["RecognitionStatus"] == "EndOfDictation":
                     break
     except ConnectionResetError:
         pass
 
-asyncio.get_event_loop().run_until_complete(handler("C:\\sample.wav"))
+
+asyncio.get_event_loop().run_until_complete(handler("sample1.wav"))
