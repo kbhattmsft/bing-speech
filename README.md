@@ -1,5 +1,6 @@
 # bing-speech
-Usage of Bing Speech API in Dictation mode with PCM files
+Usage of Bing Speech API in Dictation mode with PCM files.
+
 ** Configured for Dutch language
 ** Now with Confidence Scores!
 
