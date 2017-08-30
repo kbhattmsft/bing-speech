@@ -7,7 +7,7 @@ from uuid import uuid4
 
 import websockets
 
-SUB_KEY = "d2aa00db1dc948d682ba3d468e083b74"
+SUB_KEY = "<API KEY>"
 
 
 def bytes_from_file(filename, chunksize=8192):
@@ -65,4 +65,4 @@ async def handler(filename):
         pass
 
 
-asyncio.get_event_loop().run_until_complete(handler("sample1.wav"))
+asyncio.get_event_loop().run_until_complete(handler("<Audio file>"))
